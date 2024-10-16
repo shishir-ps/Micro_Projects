@@ -97,6 +97,6 @@ button:hover{
 }
 
 button:active{
-    transform: translateX(5px);
+    transform: translateX(-5px);
     box-shadow: 0 6px 20px hsla(62, 98%, 49%, 0.9);
 }
