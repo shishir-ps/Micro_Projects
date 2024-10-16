@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="Calcualtor.css">
+    <script src="calculator.js"></script>
+</head>
+
+<body>
+    <div class="outer-conatiner">
+
+        <div class="screen">
+            <!-- <input type="text" name="expression" > -->
+        </div>
+
+        <div class="keypad">
+            <button class="key" value="7">7</button>
+            <button class="key" value="8">8</button>
+            <button class="key" value="9">9</button>
+            <button class="key del" id="del">DEL</button>
+            <button class="key" value="4">4</button>
+            <button class="key" value="5">5</button>
+            <button class="key" value="6">6</button>
+            <button class="key" value="+">+</button>
+            <button class="key" value="1">1</button>
+            <button class="key" value="2">2</button>
+            <button class="key" value="3">3</button>
+            <button class="key" value="-">-</button>
+            <button class="key" value=".">.</button>
+            <button class="key" value="0">0</button>
+            <button class="key" value="/">/</button>
+            <button class="key" value="*">x</button>
+            <button class="key reset" id="reset">RESET</button>
+            <button class="key equal" id="equal">=</button>
+
+
+        </div>
+
+
+
+    </div>
+
+
+    <script>
+
+
+        const screen = document.querySelector('.screen');
+        const keys = document.querySelectorAll('.key');
+
+        console.log(keys);
+
+        const maxChars = 16;
+
+        function updateScreen(value) {
+            // Check if the screen has reached the maximum number of characters
+            if (screen.textContent.length < maxChars) {
+                screen.textContent += value;
+            } else {
+                alert("Character limit reached!");
+            }
+        }
+        keys.forEach(currentKey => {
+            currentKey.addEventListener('click', () => {
+                const keyValue = currentKey.textContent;
+                console.log(keyValue);
+                if (keyValue === "DEL") {
+                    screen.textContent = screen.textContent.slice(0, -1); // Delete from right side
+                } else if (keyValue === "RESET") {
+                    screen.textContent = " "; // Clear everything
+                } else if (keyValue === "=") {
+                    try {                                                       //for handling and solving the expressions and limit it to 3 decimal places in case of float
+                        let result = eval(screen.textContent);
+                        if (Number.isInteger(result)) {
+                            screen.textContent = result.toString(); 
+                        } else {
+                            screen.textContent = result.toFixed(3);  
+                        } 
+                    } catch {
+                        screen.textContent = "Error"; // Handle error in case of ending with operator or divide by zero
+                    }
+                } else {
+                    updateScreen(keyValue); // Put number/operator key values on screen
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
