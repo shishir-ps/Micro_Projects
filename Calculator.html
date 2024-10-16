@@ -55,8 +55,11 @@
         const maxChars = 16;
 
         function updateScreen(value) {
-            // Check if the screen has reached the maximum number of characters
+            
+            console.log(screen.textContent.length)
+   
             if (screen.textContent.length < maxChars) {
+                console.log(screen.textContent.length)
                 screen.textContent += value;
             } else {
                 alert("Character limit reached!");
