@@ -6,14 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="Calcualtor.css">
-    <script src="calculator.js"></script>
 </head>
 
 <body>
     <div class="outer-conatiner">
 
         <div class="screen">
-            <!-- <input type="text" name="expression" > -->
         </div>
 
         <div class="keypad">
@@ -50,12 +48,14 @@
         const screen = document.querySelector('.screen');
         const keys = document.querySelectorAll('.key');
 
+        screen.textContent = "";
+
         console.log(keys);
 
         const maxChars = 16;
 
         function updateScreen(value) {
-            
+
             console.log(screen.textContent.length)
    
             if (screen.textContent.length < maxChars) {
